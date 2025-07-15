@@ -16,7 +16,7 @@ class TaskService
 
     public function create_task(string $description): void
     {
-        $task = new Task($description, 0);
+        $task = new Task($description, 0, null);
 
         $this->task_pdo->create($task);
     }
@@ -24,5 +24,22 @@ class TaskService
     public function get_all(): array
     {
         return $this->task_pdo->get_all();
+    }
+
+    public function get_task(int $id): ?Task
+    {
+        $task = $this->task_pdo->get_id($id);
+
+        return $task;
+    }
+
+    public function update(Task $task): void
+    {
+        $this->task_pdo->update($task);
+    }
+
+    public function remove(int $id): void
+    {
+        $this->task_pdo->delete($id);
     }
 }

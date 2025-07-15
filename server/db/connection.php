@@ -15,7 +15,7 @@ class DatabaseConnection
         try {
             if (self::$pdo == null) {
                 self::$pdo = new PDO(dsn: DSN, username: USER, options: CONFIG);
-                setup::create_table(self::$pdo);
+                setup::create_Table(self::$pdo);
             }
             return self::$pdo;
         } catch (\PDOException $error) {
@@ -30,12 +30,12 @@ class DatabaseConnection
     private static function setup_databesse()
     {
         if (self::$pdo == null) {
-            $dsn = 'mysql.host=' . HOST;
-            self::$pdo = new PDO(dsn: DSN, username: USER, options: CONFIG);
+            $dsn = 'mysql:host=' . HOST;
+            self::$pdo = new PDO($dsn, username: USER, options: CONFIG);
             setup::create_DaTabese(self::$pdo);
         }
 
         self::$pdo = new PDO(dsn: DSN, username: USER, options: CONFIG);
-        return Setup::create_table(self::$pdo);
+        return Setup::create_Table(self::$pdo);
     }
 }
